@@ -1,0 +1,22 @@
+apiVersion: "apiextensions.k8s.io/v1beta1"
+kind: "CustomResourceDefinition"
+metadata:
+  name: "mypods.ilsa.example.com"
+spec:
+  group: "ilsa.example.com"
+  version: "v1"
+  scope: "Namespaced"
+  names:
+    plural: "mypods"
+    singular: "mypod"
+    kind: "MyPod"
+  validation:
+    openAPIV3Schema:
+      required: ["spec"]
+      properties:
+        spec:
+          required: ["replicas"]
+          properties:
+            replicas:
+              type: "integer"
+              minimum: 1
